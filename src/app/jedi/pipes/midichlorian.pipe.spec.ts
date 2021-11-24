@@ -22,10 +22,4 @@ describe('midichlorian pipe', () => {
     expect(decimalPipeMock.transform).toHaveBeenCalledWith(40);
   });
 
-  it('should work', () => {
-    const decimalPipeMock = jasmine.createSpyObj<DecimalPipe>(
-      'DecimalPipe mock',
-      ['transform']
-    );
-  });
 });

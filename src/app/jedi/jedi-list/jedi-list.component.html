@@ -15,12 +15,17 @@
           {{ jedi.name | jediMaster }}
         </td>
       </ng-template>
-      <td test-id="jediMidichlorian" [hidden]="isInEditMode(jedi)">
-        {{ jedi.midichlorian | midichlorian: "long" }}
-      </td>
-      <td test-id="jediMidichlorian" [hidden]="!isInEditMode(jedi)">
+      <td
+        test-id="jediMidichlorian"
+        *ngIf="isInEditMode(jedi); else jediMidichlorianReadonly"
+      >
         <input [(ngModel)]="jedi.midichlorian" type="number" />
       </td>
+      <ng-template #jediMidichlorianReadonly>
+        <td test-id="jediMidichlorian">
+          {{ jedi.midichlorian | midichlorian: "long" }}
+        </td>
+      </ng-template>
       <td>
         <button
           *ngIf="isInEditMode(jedi); else editButton"
@@ -34,10 +39,9 @@
             Edit
           </button></ng-template
         >
-        <button (click)="delete(jedi)" class="btn btn-danger">
-          Delete
-        </button>
+        <button (click)="delete(jedi)" class="btn btn-danger">Delete</button>
       </td>
     </tr>
   </tbody>
 </table>
+<sw-add-jedi></sw-add-jedi>

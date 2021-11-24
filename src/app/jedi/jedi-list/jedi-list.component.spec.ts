@@ -1,25 +1,41 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { DecimalPipe } from '@angular/common';
+import { NO_ERRORS_SCHEMA } from '@angular/core';
+import { ComponentFixture, inject, TestBed } from '@angular/core/testing';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { JediMasterPipe } from '../pipes/jedi-master.pipe';
+import { MidichlorianPipe } from '../pipes/midichlorian.pipe';
 
 import { JediListComponent } from './jedi-list.component';
 
 describe('JediListComponent', () => {
-  let component: JediListComponent;
-  let fixture: ComponentFixture<JediListComponent>;
+
+  let sut: ComponentFixture<JediListComponent>;
+  let element: HTMLElement;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ JediListComponent ]
-    })
-    .compileComponents();
+      declarations: [JediListComponent, MidichlorianPipe, JediMasterPipe],
+      providers: [DecimalPipe],
+      imports: [FormsModule, ReactiveFormsModule],
+    }).compileComponents();
+
+    sut = TestBed.createComponent(JediListComponent);
+    element = sut.nativeElement;
   });
 
-  beforeEach(() => {
-    fixture = TestBed.createComponent(JediListComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
+  it('should list the jedis in a table', async () => {
+    sut.componentInstance.jedis = [{ name: 'Yuri', midichlorian: 25_000 }];
+    sut.detectChanges();
+    await sut.whenStable();
+    expect(element.querySelectorAll('tbody tr').length).toEqual(1);
   });
 
-  it('should create', () => {
-    expect(component).toBeTruthy();
+  it('should format jedis as expected', async () => {
+    sut.componentInstance.jedis = [{ name: 'Yuri', midichlorian: 25_000 }];
+    sut.detectChanges();
+    await sut.whenStable();
+    const row = element.querySelector('tbody tr');
+    expect(row?.querySelector('[test-id="jediName"]')?.textContent?.trim()).toEqual('Master Yuri');
+    expect(row?.querySelector('[test-id="jediMidichlorian"]')?.textContent?.trim()).toEqual('25,000 midichlorian');
   });
 });
