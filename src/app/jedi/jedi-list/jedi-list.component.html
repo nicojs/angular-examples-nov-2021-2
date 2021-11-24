@@ -1,0 +1,43 @@
+<table class="jedi-list table">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Midichlorian count</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let jedi of jedis">
+      <td test-id="jediName" *ngIf="isInEditMode(jedi); else displayJediName">
+        <input [(ngModel)]="jedi.name" type="text" />
+      </td>
+      <ng-template #displayJediName>
+        <td test-id="jediName">
+          {{ jedi.name | jediMaster }}
+        </td>
+      </ng-template>
+      <td test-id="jediMidichlorian" [hidden]="isInEditMode(jedi)">
+        {{ jedi.midichlorian | midichlorian: "long" }}
+      </td>
+      <td test-id="jediMidichlorian" [hidden]="!isInEditMode(jedi)">
+        <input [(ngModel)]="jedi.midichlorian" type="number" />
+      </td>
+      <td>
+        <button
+          *ngIf="isInEditMode(jedi); else editButton"
+          (click)="removeEditMode(jedi)"
+          class="btn btn-primary"
+        >
+          Save
+        </button>
+        <ng-template #editButton
+          ><button (click)="setEditMode(jedi)" class="btn btn-secondary">
+            Edit
+          </button></ng-template
+        >
+        <button (click)="delete(jedi)" class="btn btn-danger">
+          Delete
+        </button>
+      </td>
+    </tr>
+  </tbody>
+</table>

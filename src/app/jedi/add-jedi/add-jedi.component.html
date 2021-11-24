@@ -1,0 +1,55 @@
+<form id="addJediForm" [formGroup]="createJediForm" (ngSubmit)="createJedi()">
+  <h2>Add new Jedi, use the force!</h2>
+  <div class="form-group row">
+    <label class="col-2" for="nameInput">Name</label>
+    <div class="col-10">
+      <input
+        name="name"
+        type="text"
+        id="nameInput"
+        class="form-control"
+        formControlName="name"
+      />
+      <div
+        *ngIf="
+          createJediForm.get('name')!.invalid &&
+          createJediForm.get('name')!.touched
+        "
+        class="form-text"
+      >
+        Please fill in a name
+      </div>
+    </div>
+  </div>
+  <div class="form-group row">
+    <label class="col-2" for="midichlorianInput">Midichlorian</label>
+    <div class="col-10">
+      <input
+        name="midichlorian"
+        type="number"
+        class="form-control"
+        id="midichlorianInput"
+        formControlName="midichlorian"
+      />
+      <div
+        *ngIf="createJediForm.get('midichlorian')!.errors?.max"
+        class="form-text"
+      >
+        Less than 30 000
+      </div>
+      <div
+        *ngIf="createJediForm.get('midichlorian')!.errors?.['min']"
+        class="form-text"
+      >
+        Greater than 0
+      </div>
+    </div>
+  </div>
+  <button
+    [disabled]="createJediForm.invalid"
+    type="submit"
+    class="btn btn-primary"
+  >
+    Create
+  </button>
+</form>

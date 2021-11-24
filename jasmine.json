@@ -1,0 +1,11 @@
+{
+  "spec_dir": "dist/uitest",
+  "spec_files": [
+    "**/*.spec.?(m)js"
+  ],
+  "helpers": [
+    "hooks/**/*.?(m)js"
+  ],
+  "stopSpecOnExpectationFailure": false,
+  "random": true
+}

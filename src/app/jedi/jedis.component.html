@@ -1,0 +1,26 @@
+<div class="container">
+  <div class="row">
+    <h1 [style.fontFamily]="title" [style.color]="kleur">Hello {{ title }}</h1>
+
+    Now: {{ now | date: "dd/MM/yyyy" }}
+
+    <!-- Angular expression: title = titleInput.value-->
+    <input
+      #titleInput
+      name="title"
+      (input)="title = titleInput.value"
+      type="text"
+    />
+
+    <input name="kleur" (input)="updateKleur($event)" type="text" />
+
+    <p *ngIf="kleur">Kleur is {{ kleur }}</p>
+
+    <ng-template #noKleur><p>🤷‍♂️</p></ng-template>
+
+    ({{ x }}, {{ y }})
+
+    <sw-jedi-list [jedis]="allJedis"></sw-jedi-list>
+    <sw-add-jedi (jediAdd)="allJedis.push($event)" ></sw-add-jedi>
+  </div>
+</div>

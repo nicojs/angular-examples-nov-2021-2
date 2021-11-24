@@ -1,0 +1,13 @@
+.strongforce {
+  background-color: yellow;
+}
+
+
+
+input.ng-invalid.ng-touched {
+  border: red 2px dotted;
+}
+
+input.ng-valid.ng-touched {
+  border: forestgreen 2px solid;
+}

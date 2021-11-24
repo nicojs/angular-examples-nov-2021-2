@@ -1,16 +1,18 @@
-import { NgModule } from '@angular/core';
+import { LOCALE_ID, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-
+import { registerLocaleData } from '@angular/common';
 import { AppComponent } from './app.component';
+import localeNL from '@angular/common/locales/nl';
+import { JediModule } from './jedi/jedi.module';
+
+registerLocaleData(localeNL);
 
 @NgModule({
-  declarations: [
-    AppComponent
+  declarations: [AppComponent],
+  imports: [BrowserModule, JediModule],
+  providers: [
+    { provide: LOCALE_ID, useValue: 'nl-NL' }
   ],
-  imports: [
-    BrowserModule
-  ],
-  providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}
