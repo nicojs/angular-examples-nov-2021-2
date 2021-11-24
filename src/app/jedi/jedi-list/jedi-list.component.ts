@@ -10,7 +10,7 @@ export class JediListComponent  {
   private jedisInEditMode = new Set();
 
   @Input()
-  jedis: Jedi[] = [];
+  jedis: Jedi[] | undefined;
 
   constructor() { }
 
@@ -26,7 +26,7 @@ export class JediListComponent  {
 
   delete(jedi: Jedi) {
     this.jedisInEditMode.delete(jedi);
-    this.jedis.splice(this.jedis.indexOf(jedi), 1);
+    this.jedis?.splice(this.jedis.indexOf(jedi), 1);
   }
 
   clearEdit() {

@@ -1,13 +1,17 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Jedi } from 'src/app/models/jedi.model';
+import { JediService } from '../services/jedi.service';
 
 @Component({
   selector: 'sw-add-jedi',
   templateUrl: './add-jedi.component.html',
-  styleUrls: ['./add-jedi.component.scss']
+  styleUrls: ['./add-jedi.component.scss'],
 })
-export class AddJediComponent{
+export class AddJediComponent {
+  constructor(jediService: JediService) {
+    console.log('AddJediComponent', jediService);
+  }
 
   @Output()
   public jediAdd = new EventEmitter<Jedi>();

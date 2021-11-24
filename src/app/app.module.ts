@@ -11,7 +11,7 @@ registerLocaleData(localeNL);
   declarations: [AppComponent],
   imports: [BrowserModule, JediModule],
   providers: [
-    { provide: LOCALE_ID, useValue: 'nl-NL' }
+    { provide: LOCALE_ID, useValue: 'nl-NL' },
   ],
   bootstrap: [AppComponent],
 })
