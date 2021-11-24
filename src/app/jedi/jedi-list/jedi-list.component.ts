@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, SimpleChanges } from '@angular/core';
 import { Jedi } from 'src/app/models/jedi.model';
 
 @Component({
@@ -27,5 +27,9 @@ export class JediListComponent  {
   delete(jedi: Jedi) {
     this.jedisInEditMode.delete(jedi);
     this.jedis.splice(this.jedis.indexOf(jedi), 1);
+  }
+
+  clearEdit() {
+    this.jedisInEditMode.clear();
   }
 }

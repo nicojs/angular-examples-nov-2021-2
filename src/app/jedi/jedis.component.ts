@@ -1,11 +1,12 @@
-import { Component } from '@angular/core';
+import { AfterViewInit, Component, OnChanges, SimpleChanges, ViewChild } from '@angular/core';
 import { Jedi } from '../models/jedi.model';
+import { JediListComponent } from './jedi-list/jedi-list.component';
 
 @Component({
   selector: 'sw-jedis',
   templateUrl: 'jedis.component.html'
 })
-export class JedisComponent {
+export class JedisComponent implements AfterViewInit, OnChanges {
   now = new Date();
 
   title = 'world';
@@ -20,8 +21,19 @@ export class JedisComponent {
     { name: 'Qui-Gon Jinn', midichlorian: 10_000 },
   ];
 
+  @ViewChild(JediListComponent)
+  private jediList: JediListComponent | undefined;
+
+  ngAfterViewInit() {
+    console.log('ngAfterViewInit', this.jediList)
+  }
+
   updateKleur(event: Event) {
     this.kleur = (event.target as HTMLInputElement).value;
+  }
+
+  ngOnChanges(changes: SimpleChanges) {
+    console.log(Object.keys(changes));
   }
 
   updateCoordinates(event: Event) {
@@ -30,6 +42,9 @@ export class JedisComponent {
     this.x = mouseEvent.x;
   }
 
+  stopEditing() {
+    this.jediList?.clearEdit();
+  }
 
 }
 

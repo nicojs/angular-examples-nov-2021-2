@@ -22,5 +22,7 @@
 
     <sw-jedi-list [jedis]="allJedis"></sw-jedi-list>
     <sw-add-jedi (jediAdd)="allJedis.push($event)" ></sw-add-jedi>
+
+    <button class="btn btn-secondary" (click)="stopEditing()">Clear editing</button>
   </div>
 </div>

@@ -1,23 +1,13 @@
-import { Browser, chromium } from 'playwright';
+import { browser } from '../setup/browser';
 import { JediForm } from '../page-objects/jedi-form.po';
 import { JediList } from '../page-objects/jedi-list.po';
 import { StarwarsPage } from '../page-objects/starwars-page.po';
 
 describe('Starwars application', () => {
   let page: StarwarsPage;
-  let browser: Browser;
-
-  beforeAll(() => {
-    jasmine.DEFAULT_TIMEOUT_INTERVAL = 100_000;
-  });
 
   beforeAll(async () => {
-    browser = await chromium.launch({ headless: false });
     page = new StarwarsPage(await browser.newPage());
-  });
-
-  afterAll(async () => {
-    await browser.close();
   });
 
   beforeEach(async() => {
