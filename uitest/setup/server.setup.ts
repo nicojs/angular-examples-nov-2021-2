@@ -15,7 +15,7 @@ beforeAll(async () => {
   if (!(await isInUse(jsonServerPort))) {
     jsonServer = childProcess.spawn(
       os.platform() === 'win32' ? 'npm.cmd' : 'npm',
-      ['start:backend'],
+      ['run', 'start:backend'],
       { stdio: 'inherit' }
     );
     jsonServer.on('error', (err) => {
