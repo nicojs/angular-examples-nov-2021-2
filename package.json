@@ -2,6 +2,7 @@
   "name": "starwars-application",
   "version": "0.0.0",
   "scripts": {
+    "all": "npm run lint && npm run build && npm run test",
     "ng": "ng",
     "start": "ng serve",
     "build": "ng build",
