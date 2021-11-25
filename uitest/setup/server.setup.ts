@@ -5,15 +5,30 @@ import os from 'os';
 import kill from 'tree-kill';
 
 let ngServe: childProcess.ChildProcess | undefined;
-const port = 4200;
+let jsonServer: childProcess.ChildProcess | undefined;
+const ngServePort = 4200;
+const jsonServerPort = 3000;
 
 jasmine.DEFAULT_TIMEOUT_INTERVAL = 100_000;
 
 beforeAll(async () => {
-  if (!(await isInUse(port))) {
+  if (!(await isInUse(jsonServerPort))) {
+    jsonServer = childProcess.spawn(
+      os.platform() === 'win32' ? 'npm.cmd' : 'npm',
+      ['start:backend'],
+      { stdio: 'inherit' }
+    );
+    jsonServer.on('error', (err) => {
+      console.error(err);
+    });
+    jsonServer.on('exit', () => {
+      console.log('✅ json-server killed');
+    });
+  }
+  if (!(await isInUse(ngServePort))) {
     ngServe = childProcess.spawn(
-      os.platform() === 'win32' ? 'ng.cmd' : 'ng',
-      ['serve'],
+      os.platform() === 'win32' ? 'npm.cmd' : 'npm',
+      ['start'],
       { stdio: 'inherit' }
     );
     ngServe.on('error', (err) => {
@@ -26,6 +41,10 @@ beforeAll(async () => {
   }
 });
 afterAll(() => {
+  if (jsonServer) {
+    kill(jsonServer.pid);
+    console.log('✅ Killing jsonServer');
+  }
   if (ngServe) {
     kill(ngServe.pid);
     console.log('✅ Killing ngServe');
@@ -42,7 +61,7 @@ function isInUse(port: number) {
 }
 
 async function whenIndexReady(): Promise<void> {
-  const url = `http://localhost:${port}`;
+  const url = `http://localhost:${ngServePort}`;
   console.log(`Waiting for ${url} to come to life`);
   try {
     while (!(await tryGet(url))) {

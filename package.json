@@ -5,6 +5,7 @@
     "all": "npm run lint && npm run build && npm run test",
     "ng": "ng",
     "start": "ng serve",
+    "start:backend": "json-server starwars.json",
     "build": "ng build",
     "build:uitests": "tsc -p tsconfig.uitest.json",
     "build:uitests:watch": "npm run build:uitests -- -w",
