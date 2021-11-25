@@ -14,7 +14,7 @@
     "test:karma": "ng test --watch=false --browsers ChromeHeadless",
     "test:karma:watch": "ng test",
     "pretest:ui": "npm run build:uitests",
-    "test:ui": "jasmine dist/uitest/**/*.spec.js",
+    "test:ui": "jasmine --config jasmine.json",
     "lint": "ng lint"
   },
   "private": true,

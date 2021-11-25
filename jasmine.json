@@ -4,7 +4,8 @@
     "**/*.spec.?(m)js"
   ],
   "helpers": [
-    "setup/**/*.?(m)js"
+    "setup/server.setup.js",
+    "setup/browser.js"
   ],
   "stopSpecOnExpectationFailure": false,
   "random": true

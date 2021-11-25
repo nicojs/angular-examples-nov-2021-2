@@ -24,6 +24,8 @@ beforeAll(async () => {
     jsonServer.on('exit', () => {
       console.log('✅ json-server killed');
     });
+  } else {
+    console.log('✅ json-server already running');
   }
   if (!(await isInUse(ngServePort))) {
     ngServe = childProcess.spawn(
@@ -38,6 +40,8 @@ beforeAll(async () => {
       console.log('✅ ng serve killed');
     });
     await whenIndexReady();
+  } else {
+    console.log('✅ ng serve already running');
   }
 });
 afterAll(() => {
