@@ -1,18 +1,18 @@
-<div class="container">
-  <div class="row">
-    <h1 [style.fontFamily]="title" [swAttract]="kleur">Hello {{ title }}</h1>
+<div class="row">
+  <h1 [style.fontFamily]="title" [swAttract]="kleur">Hello {{ title }}</h1>
 
-    <input name="kleur" (input)="updateKleur($event)" type="text" />
+  <input name="kleur" (input)="updateKleur($event)" type="text" />
 
-    <p *ngIf="kleur">Kleur is {{ kleur }}</p>
+  <p *ngIf="kleur">Kleur is {{ kleur }}</p>
 
-    <ng-template #noKleur><p>🤷‍♂️</p></ng-template>
+  <ng-template #noKleur><p>🤷‍♂️</p></ng-template>
 
-    ({{ x }}, {{ y }})
+  ({{ x }}, {{ y }})
 
-    <sw-jedi-list [jedis]="allJedis"></sw-jedi-list>
-    <sw-add-jedi (jediAdd)="allJedis?.push($event)" ></sw-add-jedi>
+  <sw-jedi-list [jedi]="allJedis"></sw-jedi-list>
+  <sw-add-jedi (jediAdd)="allJedis?.push($event)"></sw-add-jedi>
 
-    <button class="btn btn-secondary" (click)="stopEditing()">Clear editing</button>
-  </div>
+  <button class="btn btn-secondary" (click)="stopEditing()">
+    Clear editing
+  </button>
 </div>

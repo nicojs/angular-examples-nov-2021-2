@@ -7,6 +7,7 @@ import { JediMasterPipe } from './pipes/jedi-master.pipe';
 import { JediListComponent } from './jedi-list/jedi-list.component';
 import { AddJediComponent } from './add-jedi/add-jedi.component';
 import { SharedModule } from '../shared/shared.module';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -16,7 +17,7 @@ import { SharedModule } from '../shared/shared.module';
     JediListComponent,
     AddJediComponent,
   ],
-  imports: [CommonModule, FormsModule, ReactiveFormsModule, SharedModule],
+  imports: [CommonModule, FormsModule, ReactiveFormsModule, SharedModule, HttpClientModule],
   providers: [DecimalPipe],
   exports: [JedisComponent],
 })

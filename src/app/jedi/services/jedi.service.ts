@@ -1,21 +1,18 @@
 import { Injectable } from '@angular/core';
 import { Jedi } from 'src/app/models/jedi.model';
+import { HttpClient } from '@angular/common/http';
+import { lastValueFrom } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class JediService {
 
-  constructor() {
+  constructor(private http: HttpClient) {
     console.log('JedisService');
   }
 
   async getAll(): Promise<Jedi[]> {
-    // TODO HTTP something
-    return [
-      { name: 'Yoda', midichlorian: 17_700 },
-      { name: 'Anakin', midichlorian: 27_700 },
-      { name: 'Qui-Gon Jinn', midichlorian: 10_000 },
-    ];
+    return lastValueFrom(this.http.get<Jedi[]>('http://localhost:3000/jedis'));
   }
 }

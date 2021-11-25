@@ -7,7 +7,7 @@ import { JediService } from './services/jedi.service';
   selector: 'sw-jedis',
   templateUrl: 'jedis.component.html'
 })
-export class JedisComponent implements AfterViewInit, OnChanges, OnInit {
+export class JedisComponent implements OnChanges, OnInit {
   public now = new Date();
 
   public title = 'world';
@@ -30,10 +30,6 @@ export class JedisComponent implements AfterViewInit, OnChanges, OnInit {
 
   @ViewChild(JediListComponent)
   private jediList: JediListComponent | undefined;
-
-  ngAfterViewInit() {
-    console.log('ngAfterViewInit', this.jediList)
-  }
 
   updateKleur(event: Event) {
     this.kleur = (event.target as HTMLInputElement).value;

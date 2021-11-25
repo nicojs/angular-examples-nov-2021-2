@@ -1,3 +1,10 @@
+<form  [formGroup]="searchForm">
+  <div class="row">
+    <label for="search" class="col-2">Search jedi</label>
+    <input type="text" formControlName="search" class="col-10" placeholder="Zoek Jedi">
+  </div>
+</form>
+
 <table class="jedi-list table">
   <thead>
     <tr>
@@ -6,7 +13,7 @@
     </tr>
   </thead>
   <tbody>
-    <tr *ngFor="let jedi of jedis">
+    <tr *ngFor="let jedi of filteredJedis">
       <td test-id="jediName" *ngIf="isInEditMode(jedi); else displayJediName">
         <input [(ngModel)]="jedi.name" type="text" />
       </td>
