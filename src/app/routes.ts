@@ -1,11 +1,13 @@
 import { Routes } from '@angular/router';
-import { jediRoutes } from './jedi/jedi.routes';
 import { movieRoutes } from './movie/movie.routes';
 
 export const routes: Routes = [
   {
     path: 'jedis',
-    children: jediRoutes,
+    async loadChildren() {
+      const { JediModule } = await import('./jedi/jedi.module');
+      return JediModule;
+    }
   },
   {
     path: 'movies',
