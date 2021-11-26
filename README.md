@@ -1,6 +1,8 @@
-# StarwarsApplication
+[![CI](https://github.com/nicojs/angular-examples-nov-2021-2/actions/workflows/ci.yml/badge.svg)](https://github.com/nicojs/angular-examples-nov-2021-2/actions/workflows/ci.yml) [![Mutation testing badge](https://img.shields.io/endpoint?style=flat&url=https%3A%2F%2Fbadge-api.stryker-mutator.io%2Fgithub.com%2Fnicojs%2Fangular-examples-nov-2021-2%2Fmain)](https://dashboard.stryker-mutator.io/reports/github.com/nicojs/angular-examples-nov-2021-2/main)
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 13.0.3.
+# Starwars Application
+
+An example application that was generated with [Angular CLI](https://github.com/angular/angular-cli) version 13.0.3.
 
 ## Development server
 

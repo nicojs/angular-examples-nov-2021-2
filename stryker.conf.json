@@ -20,9 +20,10 @@
   "reporters": [
     "progress",
     "clear-text",
-    "html"
+    "html",
+    "dashboard"
   ],
-  "concurrency": 4,
+  "concurrency": 2,
   "concurrency_comment": "Recommended to use about half of your available cores when running stryker with angular",
   "coverageAnalysis": "perTest"
 }

@@ -2,7 +2,7 @@
   "name": "starwars-application",
   "version": "0.0.0",
   "scripts": {
-    "all": "npm run lint && npm run build && npm run test",
+    "all": "npm run lint && npm run build && npm run test && npm run test:mutation",
     "ng": "ng",
     "start": "ng serve",
     "start:backend": "json-server starwars.json",
@@ -11,6 +11,7 @@
     "build:uitests:watch": "npm run build:uitests -- -w",
     "watch": "ng build --watch --configuration development",
     "test": "npm run test:karma && npm run test:ui",
+    "test:mutation": "stryker run",
     "test:karma": "ng test --watch=false --browsers ChromeHeadless",
     "test:karma:watch": "ng test",
     "pretest:ui": "npm run build:uitests",
