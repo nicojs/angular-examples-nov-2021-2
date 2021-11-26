@@ -40,10 +40,7 @@ describe('JediListComponent', () => {
   });
 
   async function setJedis(jedis: Jedi[]) {
-    sut.componentInstance.jedi = [{ name: 'Yuri', midichlorian: 25_000 }];
-    sut.componentInstance.ngOnChanges({
-      jedi: new SimpleChange(undefined, jedis, true),
-    });
+    sut.componentInstance.jedi = jedis;
     sut.detectChanges();
     await sut.whenStable();
   }
