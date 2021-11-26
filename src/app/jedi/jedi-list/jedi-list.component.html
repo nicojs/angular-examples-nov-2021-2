@@ -13,7 +13,7 @@
     </tr>
   </thead>
   <tbody>
-    <tr *ngFor="let jedi of filteredJedis">
+    <tr *ngFor="let jedi of filterJedis()">
       <td test-id="jediName" *ngIf="isInEditMode(jedi); else displayJediName">
         <input [(ngModel)]="jedi.name" type="text" />
       </td>

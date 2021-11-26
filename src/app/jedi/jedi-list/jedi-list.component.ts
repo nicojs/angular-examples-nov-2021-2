@@ -8,7 +8,7 @@ import { Jedi } from 'src/app/models/jedi.model';
   templateUrl: './jedi-list.component.html',
   styleUrls: ['./jedi-list.component.scss']
 })
-export class JediListComponent implements OnInit, OnChanges {
+export class JediListComponent implements OnInit {
   private jedisInEditMode = new Set();
 
   public searchForm = new FormGroup({
@@ -17,8 +17,6 @@ export class JediListComponent implements OnInit, OnChanges {
 
   @Input()
   jedi: Jedi[] | undefined;
-
-  filteredJedis: Jedi[] | undefined;
 
   currentFilter = '';
 
@@ -29,19 +27,11 @@ export class JediListComponent implements OnInit, OnChanges {
       auditTime(1000)
     ).subscribe(value => {
       this.currentFilter = value.search;
-      this.updateFilteredJedis();
     });
   }
 
-  private updateFilteredJedis() {
-    console.log('filtering');
-    this.filteredJedis = this.jedi?.filter(jedi => jedi.name.includes(this.currentFilter));
-  }
-
-  ngOnChanges(changes: SimpleChanges){
-    if('jedi' in changes) {
-      this.updateFilteredJedis();
-    }
+  public filterJedis() {
+    return this.jedi?.filter(jedi => jedi.name.includes(this.currentFilter));
   }
 
   setEditMode(jedi: Jedi) {

@@ -27,6 +27,7 @@ describe('Starwars application', () => {
     beforeEach(async () => {
       addJediForm = await page.addJediForm();
       jediList = await page.jediList();
+      await page.waitForAngular();
     });
 
     it('should allow to add a jedi', async () => {
@@ -37,6 +38,7 @@ describe('Starwars application', () => {
       await addJediForm.setName('Windu');
       await addJediForm.setMidichlorian(15000);
       await addJediForm.submit();
+      await page.waitForAngular();
 
       // Assert
       const items = await jediList.items();

@@ -14,11 +14,6 @@
       "id": 2,
       "name": "Qui-Gon Jinn",
       "midichlorian": 10000
-    },
-    {
-      "name": "Nico",
-      "midichlorian": 200,
-      "id": 3
     }
   ]
 }
